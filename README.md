@@ -4,8 +4,8 @@ Welcome to **PropStyling**, a flexible and intuitive library for props-based sty
 
 This project provides documentation in multiple languages. Please select your preferred version:
 
--   [**English Version**](<./README(English).md>)
--   [**Korean Version**](<./README(Korean).md>)
+-   [**English Version**](<./md/README(English).md>)
+-   [**Korean Version**](<./md/README(Korean).md>)
 
 ---
 
@@ -13,8 +13,8 @@ This project provides documentation in multiple languages. Please select your pr
 
 Learn more about the project's structure and design philosophy:
 
--   [**Architecture (English)**](<./Architecture(English).md>)
--   [**Architecture (Korean)**](<./Architecture(Korean).md>)
+-   [**Architecture (English)**](<./md/Architecture(English).md>)
+-   [**Architecture (Korean)**](<./md/Architecture(Korean).md>)
 
 ---
 

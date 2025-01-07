@@ -47,6 +47,33 @@ const filterPseudoProps = (config) => {
             const dynamicPseudoProps = {}
             Object.entries(value).forEach(([innerKey, innerValue]) => {
                 if (validKeys.has(innerKey) && (!pseudo || pseudo[innerKey])) {
+                    dynamicPseudoProps[innerKey] = innerValue // $ 제거
+                }
+            })
+
+            if (Object.keys(dynamicPseudoProps).length > 0) {
+                pseudoProps[`$${key}`] = dynamicPseudoProps // Dynamic 외부에만 $ 추가
+            }
+        } else if (validKeys.has(key) && (!pseudo || pseudo[key])) {
+            // 유효한 가상 선택자 처리
+            pseudoProps[`$${key}`] = value
+        } else {
+            // 일반 객체 속성 처리 (nonPseudoProps에 포함)
+            nonPseudoProps[key] = value
+        }
+    })
+
+    return { pseudoProps, nonPseudoProps }
+}
+export default filterPseudoProps
+
+/* 
+   Object.entries(objectProps).forEach(([key, value]) => {
+        if (key === 'dynamic') {
+            // Dynamic 내부의 키를 유효한 선택자와 비교
+            const dynamicPseudoProps = {}
+            Object.entries(value).forEach(([innerKey, innerValue]) => {
+                if (validKeys.has(innerKey) && (!pseudo || pseudo[innerKey])) {
                     dynamicPseudoProps[`$${innerKey}`] = innerValue
                 }
             })
@@ -62,6 +89,4 @@ const filterPseudoProps = (config) => {
             nonPseudoProps[key] = value
         }
     })
-
-    return { pseudoProps, nonPseudoProps }
-}
+*/

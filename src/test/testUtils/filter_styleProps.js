@@ -1,7 +1,7 @@
 // filter_styleProps.js
 
-import styleDisplayKeys from 'style_displayKeys.js'
-import styleCssKeys from 'style_cssKeys.js'
+import styleDisplayKeys from './style_displayKeys.js'
+import styleCssKeys from './style_cssKeys.js'
 
 const filterStyleProps = (props) => {
     const { stringProps, type, display } = props
