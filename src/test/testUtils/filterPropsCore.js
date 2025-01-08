@@ -4,10 +4,10 @@ import filterStyleProps from './filter_styleProps.js'
 const filterPropsCore = (config) => {
     const { props, display, type, pseudo } = config
     // console.log('config', config)
-    // console.log('┌(props)\n└─▶', props)
-    // console.log('┌(display)\n└─▶', display)
-    // console.log('┌(type)\n└─▶', type)
-    // console.log('┌(pseudo)\n└─▶', pseudo)
+    console.log('┌(props)\n└─▶', props)
+    console.log('┌(display)\n└─▶', display)
+    console.log('┌(type)\n└─▶', type)
+    console.log('┌(pseudo)\n└─▶', pseudo)
 
     const objectProps = {}
     const stringProps = {}
@@ -20,8 +20,8 @@ const filterPropsCore = (config) => {
         }
     })
 
-    // console.log('┌(objectProps)\n└─▶', objectProps)
-    // console.log('┌(stringProps)\n└─▶', stringProps)
+    console.log('┌(objectProps)\n└─▶', objectProps)
+    console.log('┌(stringProps)\n└─▶', stringProps)
 
 
     // const { styled: styledProps, other: invalidStyleProps } = filterStyleProps({stringProps, type, display})
