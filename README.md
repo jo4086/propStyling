@@ -18,4 +18,4 @@ Learn more about the project's structure and design philosophy:
 
 ---
 
-PropStyling is designed to simplify and enhance the way you style components in React by combining CSS-like syntax with the flexibility of props-based dynamic styling. Explore the documentation to learn more about its features and usage!
+PropStyling is designed to simplify and enhance the way you style components in React by combining CSS-like syntax with the flexibility of props-based dynamic styling. Explore the documentation to learn more about its features and usage!!
