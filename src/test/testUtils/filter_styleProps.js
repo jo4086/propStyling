@@ -6,12 +6,15 @@ import styleCssKeys from './style_cssKeys.js'
 const filterStyleProps = (props) => {
     const { stringProps, type, display } = props
 
-    const { attribute, vaildDisplay } = styleDisplayKeys(type, display)
+    const { attribute, validDisplay } = styleDisplayKeys(type, display)
 
-    const { validCss } = styleCssKeys({ stringProps, type, vaildDisplay, attribute })
+    const { validCss, invalidCss } = styleCssKeys({ stringProps, type, validDisplay, attribute })
+
+    // console.log('┌(validCss)\n└─▶', validCss, '\n')
+    // console.log('┌(invalidCss)\n└─▶', invalidCss, '\n')
 
     return {
-        display: vaildDisplay,
+        validDisplay,
         validCss,
     }
 }

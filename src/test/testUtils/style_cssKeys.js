@@ -99,8 +99,9 @@ const styleCssKeys = (config) => {
     const invalidCss = {}
 
     Object.entries(stringProps).forEach(([key, value]) => {
+        // console.log('key', key)
         if (validCssKeys.has(key)) {
-            validCss[key] = value
+            validCss[`$${key}`] = value
         } else {
             invalidCss[key] = value
         }

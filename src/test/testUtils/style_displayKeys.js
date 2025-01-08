@@ -1,4 +1,5 @@
 const styleDisplayKeys = (type, display) => {
+    
     const typeToDisplayMap = {
         table: 'table',
         thead: 'table-header-group',
@@ -19,24 +20,24 @@ const styleDisplayKeys = (type, display) => {
     }
 
     // 교정된 display 값 설정
-    const vaildDisplay = typeToDisplayMap[type] || display
+    const validDisplay = typeToDisplayMap[type] || display
 
     // 유효하지 않은 display 값 처리
     const allValidDisplays = Object.values(displayGroups).flat()
-    if (!allValidDisplays.includes(vaildDisplay)) {
-        throw new Error(`Invalid display value "${vaildDisplay}" for type "${type}". Please provide a valid display.`)
+    if (!allValidDisplays.includes(validDisplay)) {
+        throw new Error(`Invalid display value "${validDisplay}" for type "${type}". Please provide a valid display.`)
     }
 
     // attribute 설정
     let attribute = 'common'
     for (const group in displayGroups) {
-        if (displayGroups[group].includes(vaildDisplay)) {
+        if (displayGroups[group].includes(validDisplay)) {
             attribute = group
             break
         }
     }
 
-    return { attribute, display: vaildDisplay }
+    return { attribute, validDisplay }
 }
 
 export default styleDisplayKeys

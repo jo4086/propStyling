@@ -33,27 +33,33 @@ const BoxStyle = {
             color: 'green',
         },
     },
+    gridGap: '10px',
 }
 
 const fetch = {
-    type: 'div',
+    type: 'thead',
     ex: {
         test: 'test',
+    },
+}
+const asd = (e) => {
+    if (e) {
+        console.log('function 존재')
     }
+    console.log('function 미존재')
 }
 
 const Box = {
-    display: 'block',
+    display: 'table',
     type: 'section',
     pseudo: undefined,
+    ds: asd,
     ...fetch,
     ...BoxStyle,
 }
-const { display, type, pseudo, ...props } = Box
-// console.log(display, type, pseudo, props)
-filterPropsCore({ props, display, type, pseudo })
 
-// console.log(Box)
-// console.log(filterPropsCore({}))
+let { display, type, pseudo, ...props } = Box
 
-// console.log({ attribute, display, validCss, invalidCss, type })
+const result = filterPropsCore({ props, display, type, pseudo })
+
+console.log(result)
