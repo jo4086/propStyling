@@ -2,6 +2,7 @@
 // import styleDisplayKeys from '../utils/style_displayKeys.js'
 // import filterPropsCoreTest from './filterPropsCoreTest.js'
 import filterPropsCore from './testUtils/filterPropsCore.js'
+import styledCore from './testUtils/styledCore.js'
 
 // const testProps = {
 //     stringProps: {
@@ -61,5 +62,6 @@ const Box = {
 let { display, type, pseudo, ...props } = Box
 
 const result = filterPropsCore({ props, display, type, pseudo })
-
-console.log(result)
+const result2 = styledCore(result)
+// console.log(result)
+// console.log(result2)
