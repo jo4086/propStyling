@@ -59,6 +59,7 @@ const commonPseudoKeys = [
     'after',
 ]
 
-const pseudoUtils = ({ props, pesudo, type = undefined }) => {
+const fpVType = ({ props, pesudo, type = undefined }) => {
     
 }
+export default fpVType

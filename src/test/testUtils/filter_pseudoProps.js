@@ -31,10 +31,16 @@ const tagSpecificPseudo = {
 const filterPseudoProps = (config) => {
     const { objectProps, type, pseudo } = config
 
+    // console.log(tagSpecificPseudo[type])
+
     // 1. 유효한 선택자 정의
     const commonKeys = new Set(commonPseudoKeys)
     const specificKeys = new Set(tagSpecificPseudo[type] || [])
     const validKeys = new Set([...commonKeys, ...specificKeys])
+
+    console.log('┌[path: filterPseudoProps]\n' + '├[commonKeys]\n└─▶', commonKeys, '\n')
+    console.log('┌[path: filterPseudoProps]\n' + '├[specificKeys]\n└─▶', specificKeys, '\n')
+    console.log('┌[path: filterPseudoProps]\n' + '├[validKeys]\n└─▶', validKeys, '\n')
 
     // 결과 저장
     const pseudoProps = {}

@@ -3,6 +3,7 @@ import filterStyleProps from './filter_styleProps.js'
 
 const filterPropsCore = (config) => {
     const { props, display, type, pseudo } = config
+    // console.log('┌[path: filterPropsCore]\n' + '├[type]\n└─▶', type, '\n')
 
     const objectProps = {} // 객체형 프롭스
     const stringProps = {} // 문자열형 프롭스
@@ -21,10 +22,13 @@ const filterPropsCore = (config) => {
     const { validCss, validDisplay } = filterStyleProps({ stringProps, type, display })
 
     const { pseudoProps, nonPseudoProps } = filterPseudoProps({ objectProps, type, pseudo })
+    // console.log('┌(pseudoProps)\n└─▶', pseudoProps)
+    // console.log('┌(nonPseudoProps)\n└─▶', nonPseudoProps)
 
     const result = {
-        ...(validDisplay && { $display: validDisplay }), // display는 그대로 사용
+        type,
         ...functionProps, // 함수형 프롭스를 그대로 추가
+        ...(validDisplay && { $display: validDisplay }), // display는 그대로 사용
         ...(validCss || {}), // validCss의 속성을 해체하여 추가
         ...(pseudoProps || {}), // pseudoProps의 속성을 해체하여 추가
         ...(nonPseudoProps || {}), // nonPseudoProps의 속성을 해체하여 추가

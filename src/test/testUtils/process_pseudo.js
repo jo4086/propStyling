@@ -1,4 +1,5 @@
 const processPseudo = (pseudoProps) => {
+    console.log('┌[path: processPseudo]\n' + '├[pseudoProps]\n└─▶', pseudoProps, '\n')
     const pseudoPrefixes = ['hover', 'focus', 'visited', 'disabled']
     const pseudoElements = ['before', 'after', 'placeholder']
 

@@ -38,10 +38,11 @@ const BoxStyle = {
 }
 
 const fetch = {
-    type: 'thead',
+    type: 'input',
     ex: {
         test: 'test',
     },
+    pseudo: 'hover'
 }
 const asd = (e) => {
     if (e) {
@@ -59,9 +60,11 @@ const Box = {
     ...BoxStyle,
 }
 
+console.log(Box)
+
 let { display, type, pseudo, ...props } = Box
 
 const result = filterPropsCore({ props, display, type, pseudo })
-const result2 = styledCore(result)
+// const result2 = styledCore(result)
 // console.log(result)
 // console.log(result2)
