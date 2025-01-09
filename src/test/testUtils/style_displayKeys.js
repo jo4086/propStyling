@@ -1,5 +1,4 @@
 const styleDisplayKeys = (type, display) => {
-    
     const typeToDisplayMap = {
         table: 'table',
         thead: 'table-header-group',

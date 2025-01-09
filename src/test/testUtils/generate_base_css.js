@@ -1,4 +1,4 @@
-const processBase = (baseProps) => {
+const generateBaseCSS = (baseProps) => {
     return Object.entries(baseProps)
         .map(([key, value]) => {
             const cssKey = key.replace(/([A-Z])/g, '-$1').toLowerCase() // camelCase → kebab-case
@@ -7,4 +7,4 @@ const processBase = (baseProps) => {
         .join('\n')
 }
 
-export default processBase
+export default generateBaseCSS

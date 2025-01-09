@@ -90,6 +90,7 @@ const validKeys = {
 }
 
 const allCssKeys = new Set([...commonPropsKeys, ...tablePropsKeys, ...gridPropsKeys, ...flexPropsKeys])
+// console.log('allCssKeys:', allCssKeys)
 
 const styleCssKeys = (config) => {
     const { stringProps, attribute } = config
@@ -97,6 +98,7 @@ const styleCssKeys = (config) => {
     // Step 1: 유효한 CSS 속성 키 정의
     const validCssKeys = new Set([...commonPropsKeys, ...(attribute ? validKeys[attribute] || [] : [])])
 
+    // console.log('validCssKeys:', validCssKeys)
 
     // Step 2: stringProps 필터링
     const validCss = {}
@@ -104,6 +106,8 @@ const styleCssKeys = (config) => {
     const strings = {}
 
     Object.entries(stringProps).forEach(([key, value]) => {
+        // console.log('validCssKeys.has(key):', `${key}:`, validCssKeys.has(key))
+        // console.log('key', key)
         if (validCssKeys.has(key)) {
             validCss[key] = value
         } else if (allCssKeys.has(key)) {
@@ -113,6 +117,9 @@ const styleCssKeys = (config) => {
         }
     })
 
+    // console.log('strings:', strings)
+    // console.log('validCss:', validCss)
+    // console.log('invalidCss:', invalidCss)
 
     // Step 3: 반환
     return { validCss, strings }

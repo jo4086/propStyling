@@ -23,18 +23,37 @@ import styledCore from './testUtils/styledCore.js'
 
 const BoxStyle = {
     color: 'black',
-    display: 'flex',
+    display: 'inline-flex',
     backgroundColor: 'white',
     hover: {
         color: 'blue',
     },
+    visited: {
+        color: 'orange',
+    },
     dynamic: {
         color: 'red',
+        backgroundColor: 'blue',
         hover: {
             color: 'green',
         },
+        placeholder: {
+            color: 'pink',
+        },
+        marker: {
+            markertest: 'a',
+        },
+        visited: {
+            color: 'orange',
+        },
     },
     gridGap: '10px',
+    placeholder: {
+        color: 'gray',
+    },
+    marker: {
+        markertest: 'b',
+    },
 }
 
 const fetch = {
@@ -42,8 +61,9 @@ const fetch = {
     ex: {
         test: 'test',
     },
-    pseudo: 'hover'
+    // pseudo: 'hover',
 }
+
 const asd = (e) => {
     if (e) {
         console.log('function 존재')
@@ -55,16 +75,20 @@ const Box = {
     display: 'table',
     type: 'section',
     pseudo: undefined,
+    str: 'string',
+    value: asd,
     ds: asd,
     ...fetch,
     ...BoxStyle,
 }
 
-console.log(Box)
+console.log('')
+// console.log(Box)
 
 let { display, type, pseudo, ...props } = Box
 
+// console.log('props:', props)
 const result = filterPropsCore({ props, display, type, pseudo })
-// const result2 = styledCore(result)
+const result2 = styledCore(result)
 // console.log(result)
 // console.log(result2)
