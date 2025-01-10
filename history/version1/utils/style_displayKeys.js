@@ -18,22 +18,25 @@ const styleDisplayKeys = (type, display) => {
         common: ['block', 'inline', 'inline-block', 'flow-root', 'list-item'],
     }
 
-    const validDisplay = typeToDisplayMap[type] || display
+    // 교정된 display 값 설정
+    const vaildDisplay = typeToDisplayMap[type] || display
 
+    // 유효하지 않은 display 값 처리
     const allValidDisplays = Object.values(displayGroups).flat()
-    if (!allValidDisplays.includes(validDisplay)) {
-        throw new Error(`Invalid display value "${validDisplay}" for type "${type}". Please provide a valid display.`)
+    if (!allValidDisplays.includes(vaildDisplay)) {
+        throw new Error(`Invalid display value "${vaildDisplay}" for type "${type}". Please provide a valid display.`)
     }
 
+    // attribute 설정
     let attribute = 'common'
     for (const group in displayGroups) {
-        if (displayGroups[group].includes(validDisplay)) {
+        if (displayGroups[group].includes(vaildDisplay)) {
             attribute = group
             break
         }
     }
 
-    return { attribute, validDisplay }
+    return { attribute, display: vaildDisplay }
 }
 
 export default styleDisplayKeys

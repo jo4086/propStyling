@@ -57,7 +57,6 @@ const tagSpecificPseudo = {
     li: ['marker'],
     dialog: ['backdrop'],
 }
-
 const filterPseudoProps = (config) => {
     const { objectProps, type, pseudo } = config
 
@@ -67,55 +66,32 @@ const filterPseudoProps = (config) => {
     const validKeys = new Set([...commonKeys, ...specificKeys])
     const setAllPseudoKeys = new Set([...allPseudoKeys])
 
-    // console.log('┌[path: filterPseudoProps]\n' + '├[commonKeys]\n└─▶', commonKeys, '\n')
-    // console.log('┌[path: filterPseudoProps]\n' + '├[specificKeys]\n└─▶', specificKeys, '\n')
-    // console.log('┌[path: filterPseudoProps]\n' + '├[validKeys]\n└─▶', validKeys, '\n')
+    // 2. `reduce`를 사용하여 결과 생성
+    const { pseudoProps, nonPseudoProps } = Object.entries(objectProps).reduce(
+        (acc, [key, value]) => {
+            if (key === 'dynamic') {
+                const dynamicPseudoProps = Object.entries(value).reduce((innerAcc, [innerKey, innerValue]) => {
+                    if (validKeys.has(innerKey) && (!pseudo || pseudo === innerKey)) {
+                        innerAcc[innerKey] = innerValue
+                    } else if (!setAllPseudoKeys.has(innerKey)) {
+                        innerAcc[innerKey] = innerValue
+                    }
+                    return innerAcc
+                }, {})
+                acc.pseudoProps[key] = dynamicPseudoProps
+            } else if (validKeys.has(key) && (!pseudo || pseudo === key)) {
+                acc.pseudoProps[key] = value
+            } else if (!setAllPseudoKeys.has(key)) {
+                acc.nonPseudoProps[key] = value
+            }
+            return acc
+        },
+        { pseudoProps: {}, nonPseudoProps: {} },
+    )
 
-    // 결과 저장
-    const pseudoProps = {}
-    const nonPseudoProps = {}
     const isDynamic = Boolean(objectProps?.dynamic)
 
-    if (pseudo) {
-        Object.entries(objectProps).forEach(([key, value]) => {
-            if (key === 'dynamic') {
-                const dynamicPseudoProps = {}
-                Object.entries(value).forEach(([innerKey, innerValue]) => {
-                    if (validKeys.has(innerKey) && pseudo === innerKey) {
-                        dynamicPseudoProps[innerKey] = innerValue
-                    } else if (!setAllPseudoKeys.has(innerKey)) {
-                        dynamicPseudoProps[innerKey] = innerValue
-                    }
-                })
-                return (pseudoProps[key] = dynamicPseudoProps)
-            } else if (validKeys.has(key) && pseudo === key) {
-                pseudoProps[key] = value
-            } else if (!setAllPseudoKeys.has(key) && !(pseudo === key)) {
-                nonPseudoProps[key] = value
-            }
-        })
-    } else if (pseudo === undefined) {
-        Object.entries(objectProps).forEach(([key, value]) => {
-            if (key === 'dynamic') {
-                const dynamicPseudoProps = {}
-                Object.entries(value).forEach(([innerKey, innerValue]) => {
-                    if (validKeys.has(innerKey)) {
-                        dynamicPseudoProps[innerKey] = innerValue
-                    } else if (!setAllPseudoKeys.has(innerKey)) {
-                        dynamicPseudoProps[innerKey] = innerValue
-                    }
-                })
-                return (pseudoProps[key] = dynamicPseudoProps)
-            } else if (validKeys.has(key)) {
-                pseudoProps[key] = value
-            } else if (!setAllPseudoKeys.has(key)) {
-                nonPseudoProps[key] = value
-            }
-        })
-    }
-
-    // console.log('pseudoProps:', pseudoProps)
-    // console.log('nonPseudoProps:', nonPseudoProps)
     return { pseudoProps, nonPseudoProps, isDynamic }
 }
+
 export default filterPseudoProps

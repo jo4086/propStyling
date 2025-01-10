@@ -57,7 +57,7 @@ const BoxStyle = {
 }
 
 const fetch = {
-    type: 'input',
+    type: 'div',
     ex: {
         test: 'test',
     },
@@ -87,8 +87,6 @@ console.log('')
 
 let { display, type, pseudo, ...props } = Box
 
-// console.log('props:', props)
 const result = filterPropsCore({ props, display, type, pseudo })
 const result2 = styledCore(result)
-// console.log(result)
-// console.log(result2)
+console.log(result2)

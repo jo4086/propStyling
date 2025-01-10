@@ -18,19 +18,17 @@ const generateDynamicCSS = (dynamicProps) => {
 
     const dynamicKey = '.dynamic'
 
-    const pseudoCSSBlocks = generatePseudoCSS(pseudoStyles) // 변경된 이름 반영
+    const pseudoCSSBlocks = generatePseudoCSS(pseudoStyles)
 
     const dynamicPseudoCSS = pseudoCSSBlocks
-        .split(/(?=\n&[:]{1,2}[^:])/g) // `&`로 시작하는 블록을 나눔
+        .split(/(?=\n&[:]{1,2}[^:])/g)
         .map((cssBlock) => {
             if (cssBlock.trim().startsWith('&')) {
-                // `&`로 시작하면 `.dynamic`을 추가
                 return cssBlock.replace('&', `&${dynamicKey}`)
             }
-            return cssBlock // 다른 블록은 그대로 반환
+            return cssBlock
         })
-        .join('\n') // 다시 하나로 묶음
-
+        .join('\n')
 
     const baseCSS = generateBaseCSS(baseStyles)
     const dynamicBaseCSS = `&.dynamic {
@@ -38,9 +36,6 @@ ${baseCSS}
 }`
 
     const combinedCSS = [dynamicBaseCSS, dynamicPseudoCSS].join('\n\n')
-
-    // console.log(dynamicBaseCSS)
-    // console.log('Combined Dynamic CSS:\n'+ combinedCSS)
 
     return combinedCSS
 }

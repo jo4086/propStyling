@@ -20,12 +20,23 @@ const styledCore = (props) => {
     // console.log('objectProps:', objectProps)
     // console.log('stringrops:', stringProps)
 
-    generateDynamicCSS(dynamicProps)
-    generateBaseCSS(stringProps)
-    generatePseudoCSS(objectProps)
+    const dynamicCSS = generateDynamicCSS(dynamicProps)
+    const baseCSS = generateBaseCSS(stringProps)
+    const pseudoCSS = generatePseudoCSS(objectProps)
 
-    console.log('stringProps:', stringProps)
-    console.log('objectProps:', objectProps)
+    // console.log(baseCSS)
+    // console.log(pseudoCSS)
+    // console.log(dynamicCSS)
+    
+    // console.log('stringProps:', stringProps)
+    // console.log('objectProps:', objectProps)
+    // console.log('\ndynamicCSS\n' + dynamicCSS)
+    // console.log('\nbaseCSS\n' + baseCSS)
+    // console.log('\npseudoCSS\n' + pseudoCSS)
+    const finalCSS = [baseCSS,pseudoCSS,dynamicCSS].join('\n')
+    // console.log(finalCSS)
+
+    return finalCSS
 }
 
 export default styledCore

@@ -1,3 +1,5 @@
+// style_CssKeys.js
+
 const flexPropsKeys = [
     'display', // 반드시 'flex'여야 유효
     'flexDirection',
@@ -84,30 +86,28 @@ const validKeys = {
     flex: flexPropsKeys,
     grid: gridPropsKeys,
     table: tablePropsKeys,
+    // common: commonPropsKeys,
 }
-
-const allCssKeys = new Set([...commonPropsKeys, ...tablePropsKeys, ...gridPropsKeys, ...flexPropsKeys])
-
 const styleCssKeys = (config) => {
     const { stringProps, attribute } = config
 
+    // Step 1: 유효한 CSS 속성 키 정의
     const validCssKeys = new Set([...commonPropsKeys, ...(attribute ? validKeys[attribute] || [] : [])])
 
+    // Step 2: stringProps 필터링
     const validCss = {}
     const invalidCss = {}
-    const strings = {}
 
     Object.entries(stringProps).forEach(([key, value]) => {
         if (validCssKeys.has(key)) {
             validCss[key] = value
-        } else if (allCssKeys.has(key)) {
-            invalidCss[key] = value
         } else {
-            strings[key] = value
+            invalidCss[key] = value
         }
     })
 
-    return { validCss, strings }
+    // Step 3: 반환
+    return { validCss, invalidCss }
 }
 
 export default styleCssKeys
